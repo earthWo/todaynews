@@ -37,6 +37,10 @@
                     { name: '国际', value: 'news_world'},
                     { name: '段子', value: "essay_joke'"},
                     { name: '趣图', value: 'image_funny'}
+
+
+
+
                 ]
             }
         }
