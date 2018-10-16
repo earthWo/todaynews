@@ -19864,14 +19864,24 @@ Object.defineProperty(exports, "__esModule", {
 //
 //
 
+
 exports.default = {
     name: 'App',
     components: {},
+
     data: function data() {
+
         return {
             logo: 'https://gw.alicdn.com/tfs/TB1yopEdgoQMeJjy1XaXXcSsFXa-640-302.png',
             tabs: [{ name: '热点', value: 'news_hot' }, { name: '视频', value: 'video' }, { name: '社会', value: 'news_society' }, { name: '娱乐', value: 'news_entertainment' }, { name: '问答', value: 'question_and_answer' }, { name: '图片', value: '组图' }, { name: '科技', value: 'news_tech' }, { name: '汽车', value: 'news_car' }, { name: '体育', value: 'news_sport' }, { name: '财经', value: 'news_finance' }, { name: '军事', value: 'news_military' }, { name: '国际', value: 'news_world' }, { name: '段子', value: "essay_joke'" }, { name: '趣图', value: 'image_funny' }]
         };
+    },
+
+
+    methods: {
+        getCategory: function getCategory() {
+            return this.tabs[0].value;
+        }
     }
 };
 

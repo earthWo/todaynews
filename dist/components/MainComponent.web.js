@@ -19826,7 +19826,7 @@ exports = module.exports = __webpack_require__(2)(false);
 
 
 // module
-exports.push([module.i, "\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n", ""]);
+exports.push([module.i, "\n.text[data-v-0cbdc2df]{\n    background-color : #456754;\n    flex:1;\n}\n", ""]);
 
 // exports
 
@@ -19850,7 +19850,15 @@ Object.defineProperty(exports, "__esModule", {
 //
 
 exports.default = {
-    count: 0,
+
+    props: ['name'],
+
+    data: function data() {
+        return {
+            count: ''
+        };
+    },
+
 
     methods: {
         update: function update(count) {
@@ -19865,11 +19873,11 @@ exports.default = {
 
 module.exports={render:function (){var _vm=this;var _h=_vm.$createElement;var _c=_vm._self._c||_h;
   return _c('p', {
-    staticClass: " weex-el weex-text",
+    staticClass: "text weex-el weex-text",
     attrs: {
       "weex-type": "text"
     }
-  }, [_vm._v(_vm._s(_vm.count))])
+  }, [_vm._v(_vm._s(_vm.name))])
 },staticRenderFns: []}
 module.exports.render._withStripped = true
 if (false) {

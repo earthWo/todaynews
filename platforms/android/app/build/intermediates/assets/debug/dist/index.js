@@ -113,7 +113,12 @@ module.exports = __vue_exports__
 /* 1 */
 /***/ (function(module, exports) {
 
-module.exports = {}
+module.exports = {
+  "text": {
+    "backgroundColor": "#456754",
+    "flex": 1
+  }
+}
 
 /***/ }),
 /* 2 */
@@ -134,7 +139,15 @@ Object.defineProperty(exports, "__esModule", {
 //
 
 exports.default = {
-    count: 0,
+
+    props: ['name'],
+
+    data: function data() {
+        return {
+            count: ''
+        };
+    },
+
 
     methods: {
         update: function update(count) {
@@ -148,7 +161,9 @@ exports.default = {
 /***/ (function(module, exports) {
 
 module.exports={render:function (){var _vm=this;var _h=_vm.$createElement;var _c=_vm._self._c||_h;
-  return _c('text', [_vm._v(_vm._s(_vm.count))])
+  return _c('text', {
+    staticClass: ["text"]
+  }, [_vm._v(_vm._s(_vm.name))])
 },staticRenderFns: []}
 module.exports.render._withStripped = true
 
@@ -250,14 +265,24 @@ Object.defineProperty(exports, "__esModule", {
 //
 //
 
+
 exports.default = {
     name: 'App',
     components: {},
+
     data: function data() {
+
         return {
             logo: 'https://gw.alicdn.com/tfs/TB1yopEdgoQMeJjy1XaXXcSsFXa-640-302.png',
             tabs: [{ name: '热点', value: 'news_hot' }, { name: '视频', value: 'video' }, { name: '社会', value: 'news_society' }, { name: '娱乐', value: 'news_entertainment' }, { name: '问答', value: 'question_and_answer' }, { name: '图片', value: '组图' }, { name: '科技', value: 'news_tech' }, { name: '汽车', value: 'news_car' }, { name: '体育', value: 'news_sport' }, { name: '财经', value: 'news_finance' }, { name: '军事', value: 'news_military' }, { name: '国际', value: 'news_world' }, { name: '段子', value: "essay_joke'" }, { name: '趣图', value: 'image_funny' }]
         };
+    },
+
+
+    methods: {
+        getCategory: function getCategory() {
+            return this.tabs[0].value;
+        }
     }
 };
 
@@ -316,7 +341,7 @@ __vue_styles__.push(__webpack_require__(12)
 __vue_exports__ = __webpack_require__(13)
 
 /* template */
-var __vue_template__ = __webpack_require__(14)
+var __vue_template__ = __webpack_require__(15)
 __vue_options__ = __vue_exports__ = __vue_exports__ || {}
 if (
   typeof __vue_exports__.default === "object" ||
@@ -351,7 +376,8 @@ module.exports = __vue_exports__
 
 module.exports = {
   "main": {
-    "flexDirection": "column"
+    "flexDirection": "column",
+    "flex": 1
   }
 }
 
@@ -374,6 +400,8 @@ var _MainComponent = __webpack_require__(0);
 
 var _MainComponent2 = _interopRequireDefault(_MainComponent);
 
+var _index = __webpack_require__(14);
+
 function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
 //
@@ -385,26 +413,72 @@ function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { de
 //
 //
 
+var modal = weex.requireModule('modal');
+
 exports.default = {
 
     components: { Tab: _TabComponent2.default, MainContain: _MainComponent2.default },
 
-    created: function created() {
-        console.log("created");
+    data: {
+        category: ''
+    },
+
+    mounted: function mounted() {
+        var _this = this;
+
+        var $tab = this.$refs.tab;
+        if ($tab) {
+            (0, _index.get)((0, _index.getHomeUrl)($tab.getCategory()), function (res) {
+                _this.$refs.contain.update(res.data);
+            });
+        } else {
+            modal.toast({ message: '加载数据失败', duration: 0.3 });
+        }
     }
 
 };
 
 /***/ }),
 /* 14 */
+/***/ (function(module, exports, __webpack_require__) {
+
+"use strict";
+
+
+Object.defineProperty(exports, "__esModule", {
+    value: true
+});
+exports.get = get;
+exports.getHomeUrl = getHomeUrl;
+
+var stream = weex.requireModule('stream');
+
+function get(url, callback) {
+    stream.fetch({
+        method: 'GET',
+        type: 'json',
+        url: url
+    }, callback);
+}
+
+function getHomeUrl(category) {
+
+    return 'http://is.snssdk.com/api/news/feed/v51/?category=' + category;
+}
+
+/***/ }),
+/* 15 */
 /***/ (function(module, exports) {
 
 module.exports={render:function (){var _vm=this;var _h=_vm.$createElement;var _c=_vm._self._c||_h;
   return _c('div', {
     staticClass: ["main"]
-  }, [_c('Tab'), _c('MainContain', {
+  }, [_c('tab', {
+    ref: "tab"
+  }), _c('MainContain', {
+    ref: "contain",
     attrs: {
-      "count": 4
+      "name": 6555
     }
   })], 1)
 },staticRenderFns: []}

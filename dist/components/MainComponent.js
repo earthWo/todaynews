@@ -113,7 +113,12 @@ module.exports = __vue_exports__
 /* 1 */
 /***/ (function(module, exports) {
 
-module.exports = {}
+module.exports = {
+  "text": {
+    "backgroundColor": "#456754",
+    "flex": 1
+  }
+}
 
 /***/ }),
 /* 2 */
@@ -134,7 +139,15 @@ Object.defineProperty(exports, "__esModule", {
 //
 
 exports.default = {
-    count: 0,
+
+    props: ['name'],
+
+    data: function data() {
+        return {
+            count: ''
+        };
+    },
+
 
     methods: {
         update: function update(count) {
@@ -148,7 +161,9 @@ exports.default = {
 /***/ (function(module, exports) {
 
 module.exports={render:function (){var _vm=this;var _h=_vm.$createElement;var _c=_vm._self._c||_h;
-  return _c('text', [_vm._v(_vm._s(_vm.count))])
+  return _c('text', {
+    staticClass: ["text"]
+  }, [_vm._v(_vm._s(_vm.name))])
 },staticRenderFns: []}
 module.exports.render._withStripped = true
 

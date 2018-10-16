@@ -16,10 +16,15 @@
 
 
 <script>
+
+
     export default {
         name: 'App',
         components: {},
+
         data() {
+
+
             return {
                 logo: 'https://gw.alicdn.com/tfs/TB1yopEdgoQMeJjy1XaXXcSsFXa-640-302.png',
                 tabs: [
@@ -37,12 +42,20 @@
                     { name: '国际', value: 'news_world'},
                     { name: '段子', value: "essay_joke'"},
                     { name: '趣图', value: 'image_funny'}
-
-
-
-
                 ]
             }
+        },
+
+
+        methods :{
+
+            getCategory(){
+                return this.tabs[0].value;
+            }
+
+
+
+
         }
     }
 </script>

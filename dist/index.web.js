@@ -19826,7 +19826,7 @@ exports = module.exports = __webpack_require__(2)(false);
 
 
 // module
-exports.push([module.i, "\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n", ""]);
+exports.push([module.i, "\n.text[data-v-0cbdc2df]{\n    background-color : #456754;\n    flex:1;\n}\n", ""]);
 
 // exports
 
@@ -19850,7 +19850,15 @@ Object.defineProperty(exports, "__esModule", {
 //
 
 exports.default = {
-    count: 0,
+
+    props: ['name'],
+
+    data: function data() {
+        return {
+            count: ''
+        };
+    },
+
 
     methods: {
         update: function update(count) {
@@ -19865,11 +19873,11 @@ exports.default = {
 
 module.exports={render:function (){var _vm=this;var _h=_vm.$createElement;var _c=_vm._self._c||_h;
   return _c('p', {
-    staticClass: " weex-el weex-text",
+    staticClass: "text weex-el weex-text",
     attrs: {
       "weex-type": "text"
     }
-  }, [_vm._v(_vm._s(_vm.count))])
+  }, [_vm._v(_vm._s(_vm.name))])
 },staticRenderFns: []}
 module.exports.render._withStripped = true
 if (false) {
@@ -19991,14 +19999,24 @@ Object.defineProperty(exports, "__esModule", {
 //
 //
 
+
 exports.default = {
     name: 'App',
     components: {},
+
     data: function data() {
+
         return {
             logo: 'https://gw.alicdn.com/tfs/TB1yopEdgoQMeJjy1XaXXcSsFXa-640-302.png',
             tabs: [{ name: '热点', value: 'news_hot' }, { name: '视频', value: 'video' }, { name: '社会', value: 'news_society' }, { name: '娱乐', value: 'news_entertainment' }, { name: '问答', value: 'question_and_answer' }, { name: '图片', value: '组图' }, { name: '科技', value: 'news_tech' }, { name: '汽车', value: 'news_car' }, { name: '体育', value: 'news_sport' }, { name: '财经', value: 'news_finance' }, { name: '军事', value: 'news_military' }, { name: '国际', value: 'news_world' }, { name: '段子', value: "essay_joke'" }, { name: '趣图', value: 'image_funny' }]
         };
+    },
+
+
+    methods: {
+        getCategory: function getCategory() {
+            return this.tabs[0].value;
+        }
     }
 };
 
@@ -20076,7 +20094,7 @@ var Component = __webpack_require__(4)(
   /* script */
   __webpack_require__(26),
   /* template */
-  __webpack_require__(27),
+  __webpack_require__(28),
   /* styles */
   injectStyle,
   /* scopeId */
@@ -20142,7 +20160,7 @@ exports = module.exports = __webpack_require__(2)(false);
 
 
 // module
-exports.push([module.i, "\n.main{\n\n    flex-direction: column;\n}\n", ""]);
+exports.push([module.i, "\n.main{\n\n    flex-direction: column;\n    flex:1;\n}\n", ""]);
 
 // exports
 
@@ -20166,6 +20184,8 @@ var _MainComponent = __webpack_require__(10);
 
 var _MainComponent2 = _interopRequireDefault(_MainComponent);
 
+var _index = __webpack_require__(27);
+
 function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
 //
@@ -20177,12 +20197,27 @@ function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { de
 //
 //
 
+var modal = weex.requireModule('modal');
+
 exports.default = {
 
     components: { Tab: _TabComponent2.default, MainContain: _MainComponent2.default },
 
-    created: function created() {
-        console.log("created");
+    data: {
+        category: ''
+    },
+
+    mounted: function mounted() {
+        var _this = this;
+
+        var $tab = this.$refs.tab;
+        if ($tab) {
+            (0, _index.get)((0, _index.getHomeUrl)($tab.getCategory()), function (res) {
+                _this.$refs.contain.update(res.data);
+            });
+        } else {
+            modal.toast({ message: '加载数据失败', duration: 0.3 });
+        }
     }
 
 };
@@ -20191,15 +20226,47 @@ exports.default = {
 /* 27 */
 /***/ (function(module, exports, __webpack_require__) {
 
+"use strict";
+
+
+Object.defineProperty(exports, "__esModule", {
+    value: true
+});
+exports.get = get;
+exports.getHomeUrl = getHomeUrl;
+
+var stream = weex.requireModule('stream');
+
+function get(url, callback) {
+    stream.fetch({
+        method: 'GET',
+        type: 'json',
+        url: url
+    }, callback);
+}
+
+function getHomeUrl(category) {
+
+    return 'http://is.snssdk.com/api/news/feed/v51/?category=' + category;
+}
+
+/***/ }),
+/* 28 */
+/***/ (function(module, exports, __webpack_require__) {
+
 module.exports={render:function (){var _vm=this;var _h=_vm.$createElement;var _c=_vm._self._c||_h;
   return _c('div', {
     staticClass: "main weex-ct weex-div",
     attrs: {
       "weex-type": "div"
     }
-  }, [_c('Tab'), _vm._v(" "), _c('MainContain', {
+  }, [_c('tab', {
+    ref: "tab",
+    attrs: {}
+  }), _vm._v(" "), _c('MainContain', {
+    ref: "contain",
     attrs: {
-      "count": 4
+      "name": 6555
     }
   })], 1)
 },staticRenderFns: []}

@@ -1,13 +1,20 @@
 <template>
 
 
-    <text>{{count}}</text>
+    <text class="text">{{name}}</text>
     
 </template>
 
 <script>
     export default {
-        count: 0,
+
+        props:['name'],
+
+        data(){
+            return{
+                count: ''
+            }
+        },
 
 
         methods: {
@@ -20,4 +27,8 @@
 
 <style scoped>
 
+    .text{
+        background-color : #456754;
+        flex:1;
+    }
 </style>
