@@ -1,0 +1,9 @@
+{
+   "AppName":"todaynews",
+   "Version":"0.1",
+   "BuildVersion":"0.1.0",
+   "AppId":"com.fish.news",
+   "CodeSign":"",
+   "Profile":"",
+   "WeexBundle":"index.js"
+}

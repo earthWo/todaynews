@@ -1,0 +1,10 @@
+[
+    {
+        "merged": "/Users/uc/project/todaynews/platforms/android/app/build/intermediates/res/merged/debug/menu/main_scan.xml",
+        "source": "/Users/uc/project/todaynews/platforms/android/app/src/main/res/menu/main_scan.xml"
+    },
+    {
+        "merged": "/Users/uc/project/todaynews/platforms/android/app/build/intermediates/res/merged/debug/menu/main.xml",
+        "source": "/Users/uc/project/todaynews/platforms/android/app/src/main/res/menu/main.xml"
+    }
+]

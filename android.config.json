@@ -1,0 +1,6 @@
+{
+  "AppName":"todaynews",
+  "AppId":"com.fish.news",
+  "SplashText":"Hello\nWeex",
+  "WeexBundle":"index.js"
+}

@@ -1,0 +1,10 @@
+[
+    {
+        "merged": "/Users/uc/project/todaynews/platforms/android/app/build/intermediates/res/merged/debug/drawable-xhdpi/ic_action_refresh.png",
+        "source": "/Users/uc/project/todaynews/platforms/android/app/src/main/res/drawable-xhdpi/ic_action_refresh.png"
+    },
+    {
+        "merged": "/Users/uc/project/todaynews/platforms/android/app/build/intermediates/res/merged/debug/drawable-xhdpi/ic_action_scan.png",
+        "source": "/Users/uc/project/todaynews/platforms/android/app/src/main/res/drawable-xhdpi/ic_action_scan.png"
+    }
+]
