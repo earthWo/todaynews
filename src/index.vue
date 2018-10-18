@@ -1,7 +1,7 @@
 <template>
     <div class="main">
         <tab ref='tab'></tab>
-        <MainContain ref='contain' :name="6555"></MainContain>
+        <MainContain ref='contain'></MainContain>
     </div>
 </template>
 
@@ -24,20 +24,43 @@
         },
 
         mounted: function() {
-            const $tab = this.$refs.tab;
-            if($tab){
-                get(getHomeUrl($tab.getCategory()),res=>{
-                    this.$refs.contain.update(res.data);
-                })
-            }else{
-                modal.toast({ message: '加载数据失败', duration: 0.3 })
-            }
+            this.onrefresh();
+        },
+
+        created: function () {
+            this.$on('refresh', function(e) {
+               this.onrefresh();
+            });
+            this.$on('loadmore', function(e) {
+                this.loadmore(e);
+            })
         },
 
 
 
+        methods :{
 
 
+
+            onrefresh(){
+                const $tab = this.$refs.tab;
+                if($tab){
+                    get(getHomeUrl($tab.getCategory()),res=>{
+                        this.$refs.contain.setData(res.data);
+                    })
+                }else{
+                    modal.toast({ message: '加载数据失败', duration: 0.3 })
+                }
+            },
+
+            loadmore(){
+                const $tab = this.$refs.tab;
+                this.$refs.contain.addData('');
+
+
+            }
+
+        }
 
     }
 
@@ -48,8 +71,6 @@
 
 
     .main{
-
-        flex-direction: column;
         flex:1;
     }
 </style>
